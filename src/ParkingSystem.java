@@ -25,7 +25,7 @@ public class ParkingSystem {
 		parkingLot.setExits(exits);
 		
 		ThreadPoolExecutor executor = (ThreadPoolExecutor) Executors.newFixedThreadPool(3);
-		for(int j = 0; j<4; j++){
+		for(int j = 0; j<5; j++){
 			Car car = new Car("car"+j, entries, exits);
 			executor.execute(car);
 		}

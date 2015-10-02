@@ -25,7 +25,7 @@ public class Car implements Runnable{
 		this.entries = entries;
 		this.entry = entries.get(selectEntry(entries.size()));
 		this.exits = exits;
-		this.exit = exits.get(0);
+		this.exit = exits.get(selectExit(exits.size()));
 	}
 	
 	public CarStatus getCarStatus() {
@@ -62,6 +62,16 @@ public class Car implements Runnable{
 	public void setExit(Exit exit) {
 		this.exit = exit;
 	}
+	
+	public int selectExit(int numOfExits){
+		int index;
+		Random randomizer = new Random();
+		index = randomizer.nextInt(numOfExits);
+		
+		
+		return index;
+		
+	}
 
 	public void notifyEntry(){
 		entry.checkLotCapacity();
@@ -79,22 +89,17 @@ public class Car implements Runnable{
 		try{
             System.out.println(carID + " is entering through " + entry.getEntryID());
 			
-            notifyEntry();
-            
+            notifyEntry();           
             while(entry.isLocked()){
-            	System.out.println(carID + " is waiting");
+            	notifyEntry();
             }
             
             System.out.println(carID + " has passed through");
             parkCar();
             System.out.println(carID + " has parked");
             
-            
-            
-            //try to park. wait if you have to
-			//park for a random amount of time
 			Thread.sleep(100);
-			//exit
+
 			System.out.println(carID + " is exiting");
 			unparkCar();
 			

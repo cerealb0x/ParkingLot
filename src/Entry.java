@@ -37,19 +37,9 @@ public class Entry{
 
 	
 	synchronized void checkLotCapacity(){
-		
-		
+			
 		parkingLot.checkForAvailableSpace();
-		
-		/*if(parkingLot.checkForAvailableSpace()){
-			System.out.println("the parking lot has space you dope");
-			//unlock all entries
-		}else{
-			System.out.println("the parking lot has no space you dope");
-			//lock all entries
 				
-		}*/
-		
 	}
 	
 	public void notifyLotOfParkedCar(){
