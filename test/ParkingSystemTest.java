@@ -9,10 +9,6 @@ import org.junit.Test;
 
 public class ParkingSystemTest {
 
-	@Test
-	public void test() {
-		fail("Not yet implemented");
-	}
 	
 	@Test
 	public void checkForNoSpaceTest(){

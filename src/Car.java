@@ -85,17 +85,23 @@ public class Car implements Runnable{
 		exit.notifyLotOfExitingCar();
 	}
 	
+	
+	
 	public void run(){
 		try{
             System.out.println(carID + " is entering through " + entry.getEntryID());
 			
+            
             notifyEntry();           
+        
             while(entry.isLocked()){
             	notifyEntry();
             }
             
             System.out.println(carID + " has passed through");
+
             parkCar();
+            
             System.out.println(carID + " has parked");
             
 			Thread.sleep(100);

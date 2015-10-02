@@ -36,10 +36,10 @@ public class Entry{
 	 * Signals the parking lot this entry is associated with
 	 * to check for available space
 	 */
-	synchronized void checkLotCapacity(){
-			
-		parkingLot.checkForAvailableSpace();
-				
+	public void checkLotCapacity(){
+		synchronized(parkingLot){
+			parkingLot.checkForAvailableSpace();
+		}
 	}
 	
 	/**
@@ -47,7 +47,9 @@ public class Entry{
 	 * allowed in and is about to park
 	 */
 	public void notifyLotOfParkedCar(){
-		parkingLot.parkCar();
+		synchronized(parkingLot){
+			parkingLot.parkCar();
+		}
 	}
 
 
@@ -67,6 +69,15 @@ public class Entry{
 	
 		this.locked = locked;
 	}
+
+	public Lot getParkingLot() {
+		return parkingLot;
+	}
+
+	public void setParkingLot(Lot parkingLot) {
+		this.parkingLot = parkingLot;
+	}
+	
 	
 	
 }
