@@ -20,6 +20,9 @@ public class Exit {
 		System.out.println(this.exitID + " has been created");
 	}
 	
+	/**
+	 * Signals the parking lot of a car exiting the lot
+	 */
 	public void notifyLotOfExitingCar(){
 		parkingLot.freeUpSpace();
 	}

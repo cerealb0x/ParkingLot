@@ -8,26 +8,36 @@ public class Lot {
 	private int numOfEntries;
 	private int numOfExits;
 	private int availableSpaces;
-	private int occupiedSpaces;
 	private ArrayList<Entry> entries;
 	private ArrayList<Exit> exits;
 	
 	public Lot(int capacity, int numOfEntries, int numOfExits){
 		this.capacity = capacity;
 		this.availableSpaces = capacity;
-		this.occupiedSpaces = 0;
 		this.numOfEntries = numOfEntries;
 		this.numOfExits = numOfExits;
 	}
 	
-	
+	/**
+	 * Getter method for the available spaces variable
+	 * @return number of available spaces in this lot
+	 */
 	public int getAvailableSpaces() {
 		return availableSpaces;
 	}
+	
+	/**
+	 * Setter method for the available spaces variable
+	 * @param availableSpaces
+	 */
 	public void setAvailableSpaces(int availableSpaces) {
 		this.availableSpaces = availableSpaces;
 	}
 	
+	/**
+	 * Checks to see if there is currently any available space
+	 * in the parking lot
+	 */
 	public void checkForAvailableSpace(){
 		if(availableSpaces > 0){
 			System.out.println("There is space");
@@ -38,6 +48,10 @@ public class Lot {
 		}
 	}
 	
+	/**
+	 * Unlocks all of the entries associated with this lot
+	 * (sets their locked values to false)
+	 */
 	public void unlockEntries(){
 		Iterator<Entry> it = entries.iterator();
 		while(it.hasNext()){
@@ -46,6 +60,10 @@ public class Lot {
 		System.out.println("entries have been unlocked");
 	}
 	
+	/**
+	 * Locks all of the entries associated with this lot
+	 * (sets their locked values to true)
+	 */
 	public void lockEntries(){
 		Iterator<Entry> it = entries.iterator();
 		while(it.hasNext()){
@@ -55,6 +73,10 @@ public class Lot {
 
 	}
 	
+	/**
+	 * Decrements the amount of available spaces, done so
+	 * whenever a car is parked
+	 */
 	synchronized void parkCar(){
 		
 		this.availableSpaces--;
@@ -63,6 +85,10 @@ public class Lot {
 
 	}
 	
+	/**
+	 * Increments the amount of available spaces, done so 
+	 * whenever a car exits
+	 */
 	synchronized void freeUpSpace(){
 		this.availableSpaces++;
 		//unlock entries should be called here
@@ -71,53 +97,39 @@ public class Lot {
 
 	}
 	
-	public int getOccupiedSpaces() {
-		return occupiedSpaces;
-	}
-	public void setOccupiedSpaces(int occupiedSpaces) {
-		this.occupiedSpaces = occupiedSpaces;
-	}
-
-
+	/**
+	 * Getter method for the list of entries associated with this lot
+	 * @return the list of entries associated w/ this lot
+	 */
 	public ArrayList<Entry> getEntries() {
 		return entries;
 	}
 
 
+	/**
+	 * Setter method for the list of entries for this lot
+	 * @param entries
+	 */
 	public void setEntries(ArrayList<Entry> entries) {
 		this.entries = entries;
 	}
 	
 	
-	
+	/**
+	 * Getter method for the list of exits associated with this lot
+	 * @return the list of exits associated w/ this lot
+	 */
 	public ArrayList<Exit> getExits() {
 		return exits;
 	}
 
 
+	/**
+	 * Setter method for the lists of exits for this lot
+	 * @param exits
+	 */
 	public void setExits(ArrayList<Exit> exits) {
 		this.exits = exits;
 	}
-
-
-	public void start(){
-		
-		
-		Iterator<Entry> it = entries.iterator();
-		
-	
-		
-		//check each entry
-		//if an entry has a car waiting...
-		//check if there is space for parking
-		//if not, lock that entry
-		//if there is space, allow for entry
-		
-		//then, check exits
-		//if a car leaves, free up a space
-		
-		
-	}
-	
 	
 }

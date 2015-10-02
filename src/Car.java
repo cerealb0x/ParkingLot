@@ -1,21 +1,21 @@
 import java.util.ArrayList;
 import java.util.Random;
 
-
-
-
+/*This is the car class, which represents a car object that will be
+ * parking in the parking lot - each car will be run as an individual
+ * thread, and so we implement the Runnable interface*/
 public class Car implements Runnable{
 
 	
 	private Thread t;
-	private ArrayList<Entry> entries;
-	private Entry entry;
-	private ArrayList<Exit> exits;
-	private Exit exit;
+	private ArrayList<Entry> entries;	//a list of all the entries in the parking lot
+	private Entry entry;				//the entry that this car will use
+	private ArrayList<Exit> exits;		//a list of all the exits in the parking lot
+	private Exit exit;					//the exit that this car will use
 	private boolean willExit;
 	public enum CarStatus {ENTERING, EXITING, PARKED, WAITINGTOENTER, WAITINGTOEXIT};
 	private CarStatus carStatus;
-	private String carID;
+	private String carID;				//a String ID used to distinguish this car object
 	
 	
 	

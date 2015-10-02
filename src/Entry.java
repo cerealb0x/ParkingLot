@@ -6,68 +6,63 @@ public class Entry{
 	
 	private String entryID;
 	private Lot parkingLot;
-	private boolean carWaiting;
 	private boolean locked;
-	private ArrayList<Car> carQueue;
 	
 	public Entry(String id, Lot parkingLot){
 		this.parkingLot = parkingLot;
 		this.entryID = id;
-		this.carWaiting = true;
 		this.locked = false;
-		this.carQueue = new ArrayList<Car>();
-		
-	
 		
 		System.out.println(this.entryID + " has been created");
 	}
 
-	
-	
+	/**
+	 * Getter method for the entry ID variable
+	 * @return the ID of the entry
+	 */
 	public String getEntryID() {
 		return entryID;
 	}
 
-
-
+	/**
+	 * Setter method for the entry ID
+	 * @param entryID
+	 */
 	public void setEntryID(String entryID) {
 		this.entryID = entryID;
 	}
 
-
-	
+	/**
+	 * Signals the parking lot this entry is associated with
+	 * to check for available space
+	 */
 	synchronized void checkLotCapacity(){
 			
 		parkingLot.checkForAvailableSpace();
 				
 	}
 	
+	/**
+	 * Signals the parking lot of a car that has been
+	 * allowed in and is about to park
+	 */
 	public void notifyLotOfParkedCar(){
 		parkingLot.parkCar();
 	}
 
-	public boolean hasCarWaiting() {
-		return carWaiting;
-	}
 
-	public void setCarWaiting(boolean carWaiting) {
-		this.carWaiting = carWaiting;
-	}
-	
-	
-
-	public ArrayList<Car> getCarQueue() {
-		return carQueue;
-	}
-
-	public void setCarQueue(ArrayList<Car> carQueue) {
-		this.carQueue = carQueue;
-	}
-
+	/**
+	 * Getter method for the locked variable
+	 * @return a boolean value that determines whether the entry is locked or not
+	 */
 	public boolean isLocked() {
 		return locked;
 	}
 
+	/**
+	 * Setter method for the locked variable
+	 * @param locked
+	 */
 	public void setLocked(boolean locked) {
 	
 		this.locked = locked;
