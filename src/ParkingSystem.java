@@ -43,14 +43,14 @@ public class ParkingSystem {
 	
 		ArrayList<Entry> entries = new ArrayList<Entry>();
 		ArrayList<Exit> exits = new ArrayList<Exit>();
-		Lot parkingLot = new Lot(1,3,3);
+		Lot parkingLot = new Lot(1,3,5);
 
 		for(int i = 0; i < 3; i++){
 			entries.add(new Entry("entry"+i, parkingLot));
 		}
 		parkingLot.setEntries(entries);
 
-		for(int k = 0; k < 3; k++){
+		for(int k = 0; k < 5; k++){
 			exits.add(new Exit("exit"+k, parkingLot));
 		}
 		parkingLot.setExits(exits);

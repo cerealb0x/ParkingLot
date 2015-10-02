@@ -37,6 +37,31 @@ public class ParkingSystemTest {
 	}
 	
 	@Test
+	public void parkingCausesSpaceDecrementTest(){
+		Lot parkingLot = new Lot(100,1,1);
+		Entry entry = new Entry("test", parkingLot);
+		ArrayList<Entry> entries = new ArrayList<Entry>();
+		entries.add(entry);
+		parkingLot.setEntries(entries);
+		
+		parkingLot.parkCar();
+		assertTrue(parkingLot.getAvailableSpaces() == 99);
+	}
+	
+	@Test
+	public void exitingCausesSpaceIncrementTest(){
+		Lot parkingLot = new Lot(1000,1,1);
+		Entry entry = new Entry("test", parkingLot);
+		ArrayList<Entry> entries = new ArrayList<Entry>();
+		entries.add(entry);
+		parkingLot.setEntries(entries);
+		
+		parkingLot.freeUpSpace();
+		assertTrue(parkingLot.getAvailableSpaces() == 1001);
+	}
+	
+	/*
+	@Test
 	public void equalExitsAndEntriesTest(){
 		ArrayList<Entry> entries = new ArrayList<Entry>();
 		ArrayList<Exit> exits = new ArrayList<Exit>();
@@ -88,6 +113,6 @@ public class ParkingSystemTest {
 		executor.shutdown();
 		
 		
-	}
+	}*/
 
 }
