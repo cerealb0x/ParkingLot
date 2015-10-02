@@ -43,7 +43,7 @@ public class ParkingSystem {
 	
 		ArrayList<Entry> entries = new ArrayList<Entry>();
 		ArrayList<Exit> exits = new ArrayList<Exit>();
-		Lot parkingLot = new Lot(1,3,5);
+		Lot parkingLot = new Lot(10,3,5);
 
 		for(int i = 0; i < 3; i++){
 			entries.add(new Entry("entry"+i, parkingLot));
@@ -56,7 +56,7 @@ public class ParkingSystem {
 		parkingLot.setExits(exits);
 		
 		ThreadPoolExecutor executor = (ThreadPoolExecutor) Executors.newFixedThreadPool(3);
-		for(int j = 0; j<8; j++){
+		for(int j = 0; j<20; j++){
 			Car car = new Car("car"+j, entries, exits);
 			executor.execute(car);
 		}

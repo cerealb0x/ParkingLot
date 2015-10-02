@@ -94,8 +94,10 @@ public class Car implements Runnable{
             
             notifyEntry();           
         
-            
-            System.out.println(carID + " has passed through");
+            while(entry.isLocked()){
+            	Thread.sleep(100);
+            }
+          //  System.out.println(carID + " has passed through");
             
 
             parkCar();

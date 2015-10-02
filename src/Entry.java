@@ -37,7 +37,9 @@ public class Entry{
 	 * to check for available space
 	 */
 	public void checkLotCapacity(){
+
 		synchronized(parkingLot){
+	
 			parkingLot.checkForAvailableSpace();
 		}
 	}
@@ -47,6 +49,7 @@ public class Entry{
 	 * allowed in and is about to park
 	 */
 	public void notifyLotOfParkedCar(){
+		
 		synchronized(parkingLot){
 			parkingLot.parkCar();
 		}
