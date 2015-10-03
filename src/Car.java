@@ -41,20 +41,6 @@ public class Car implements Runnable{
 		this.entry = entry;
 	}
 
-	/**
-	 * Randomly selects one of the entries in the lot
-	 * @param numOfEntries
-	 * @return an integer index to the entry list
-	 */
-	public int selectEntry(int numOfEntries){
-		
-		int index;
-		Random randomizer = new Random();
-		index = randomizer.nextInt(numOfEntries);
-		
-		
-		return index;
-	}
 	
 	/**
 	 * Getter method for the car's chosen exit
@@ -70,6 +56,21 @@ public class Car implements Runnable{
 	 */
 	public void setExit(Exit exit) {
 		this.exit = exit;
+	}
+	
+	/**
+	 * Randomly selects one of the entries in the lot
+	 * @param numOfEntries
+	 * @return an integer index to the entry list
+	 */
+	public int selectEntry(int numOfEntries){
+		
+		int index;
+		Random randomizer = new Random();
+		index = randomizer.nextInt(numOfEntries);
+		
+		
+		return index;
 	}
 	
 	/**
@@ -101,19 +102,14 @@ public class Car implements Runnable{
 	
 
 	/**
-	 * Signals the entry that this car has arrived
+	 * Signals the entry gate that this car has arrived at it
+	 * @return the entry gate will return a boolean value
+	 * determining whether or not this car got permission to enter
 	 */
 	public boolean notifyEntry(){
 		return entry.checkLotCapacity();
 	}
-	
-	/**
-	 * Signals the parking lot of this car's intention to park
-	 */
-	public void parkCar(){
-		entry.notifyLotOfParkedCar();
-	}
-	
+		
 	/**
 	 * Signals the parking lot of this car
 	 * exiting its space and the parking lot
@@ -136,10 +132,11 @@ public class Car implements Runnable{
             //let the entry know that this car has arrived
             boolean entryGranted = notifyEntry();           
         
-            //if the entry is locked, wait
+            //if the entry is locked, the lot is full and the car drives away
             if(!entryGranted){
             	System.out.println("Car: " + carID + " turned around \n");
             } else{   
+            //otherwise, the car gains entry and parks in the lot	
             	System.out.print("Car: " + carID + " will now park \n");
                 //park for a while
     			Thread.sleep(1000);
