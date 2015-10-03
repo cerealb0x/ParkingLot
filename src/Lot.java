@@ -5,7 +5,6 @@ import java.util.Iterator;
 public class Lot {
 
 	private int capacity;
-	private int carsLetThrough;
 	private int numOfEntries;
 	private int numOfExits;
 	private int availableSpaces;
@@ -14,7 +13,6 @@ public class Lot {
 	
 	public Lot(int capacity, int numOfEntries, int numOfExits){
 		this.capacity = capacity;
-		this.carsLetThrough = 0;
 		this.availableSpaces = capacity;
 		this.numOfEntries = numOfEntries;
 		this.numOfExits = numOfExits;
