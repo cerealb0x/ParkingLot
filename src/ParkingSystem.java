@@ -6,13 +6,13 @@ import java.util.concurrent.ThreadPoolExecutor;
 
 public class ParkingSystem {
 
-	public ArrayList<Entry> entries = new ArrayList<Entry>();
-	public ArrayList<Exit> exits = new ArrayList<Exit>();
-	public Lot parkingLot;
-	public int numOfSpaces;
-	public int numOfEntries;
-	public int numOfExits;
-	public int numOfCars;
+	private ArrayList<Entry> entries = new ArrayList<Entry>();
+	private ArrayList<Exit> exits = new ArrayList<Exit>();
+	private Lot parkingLot;
+	private int numOfSpaces;
+	private int numOfEntries;
+	private int numOfExits;
+	private int numOfCars;
 	
 	
 	public void testStart(int numOfSpaces, int numOfEntries, int numOfExits, int numOfCars){
@@ -46,7 +46,7 @@ public class ParkingSystem {
 	
 		ArrayList<Entry> entries = new ArrayList<Entry>();
 		ArrayList<Exit> exits = new ArrayList<Exit>();
-		Lot parkingLot = new Lot(3,2,2);
+		Lot parkingLot = new Lot(1,2,2);
 
 		for(int i = 0; i < 2; i++){
 			entries.add(new Entry("entry"+i, parkingLot));
@@ -59,7 +59,7 @@ public class ParkingSystem {
 		parkingLot.setExits(exits);
 		
 		ThreadPoolExecutor executor = (ThreadPoolExecutor) Executors.newFixedThreadPool(2);
-		for(int j = 0; j<7; j++){
+		for(int j = 0; j<2; j++){
 			Car car = new Car("car"+j, entries, exits);
 			executor.execute(car);
 		}
