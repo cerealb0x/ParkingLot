@@ -60,6 +60,13 @@ public class ParkingSystemTest {
 		assertTrue(parkingLot.getAvailableSpaces() == 1001);
 	}
 	
+	@Test
+	public void oneSpaceAndTwoCarsTest(){
+		ParkingSystem ps = new ParkingSystem();
+		ps.testStart(1,2,2,2);
+		ps.main(null);
+	}
+	
 	/*
 	@Test
 	public void equalExitsAndEntriesTest(){

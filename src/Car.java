@@ -13,7 +13,7 @@ public class Car implements Runnable{
 	private ArrayList<Exit> exits;		//a list of all the exits in the parking lot
 	private Exit exit;					//the exit that this car will use
 	private String carID;				//a String ID used to distinguish this car object
-	
+	private boolean permanentlyPark;
 	
 	
 	public Car(String carID, ArrayList<Entry> entries, ArrayList<Exit> exits){
@@ -22,6 +22,7 @@ public class Car implements Runnable{
 		this.entry = entries.get(selectEntry(entries.size()));
 		this.exits = exits;
 		this.exit = exits.get(selectExit(exits.size()));
+		this.permanentlyPark = selectPermanentParkStatus();
 	}
 	
 	/**
@@ -85,12 +86,25 @@ public class Car implements Runnable{
 		return index;
 		
 	}
+	
+	
+	public boolean selectPermanentParkStatus(){
+		
+		int index;
+		boolean boolArr[] = {false, true};
+		Random randomizer = new Random();
+		index = randomizer.nextInt(2);
+		
+		
+		return boolArr[index];
+	}
+	
 
 	/**
 	 * Signals the entry that this car has arrived
 	 */
-	public void notifyEntry(){
-		entry.checkLotCapacity();
+	public boolean notifyEntry(){
+		return entry.checkLotCapacity();
 	}
 	
 	/**
@@ -117,27 +131,24 @@ public class Car implements Runnable{
 	 */
 	public void run(){
 		try{
-            System.out.println(carID + " is entering through " + entry.getEntryID());
 			
+			System.out.print("Car: " + carID + " has arrived at "+ entry.getEntryID() + "\n");
             //let the entry know that this car has arrived
-            notifyEntry();           
+            boolean entryGranted = notifyEntry();           
         
             //if the entry is locked, wait
-            while(entry.isLocked()){
-            	Thread.sleep(100);
+            if(!entryGranted){
+            	System.out.println("Car: " + carID + " turned around \n");
+            } else{   
+            	System.out.print("Car: " + carID + " will now park \n");
+                //park for a while
+    			Thread.sleep(100);
+
+    			System.out.print("Car: " + carID + " will now exit the lot \n");
+    			//unpark the car and exit the parking lot
+    			unparkCar();
             }
             
-            //once given entry, park the car
-            parkCar();
-            
-            System.out.println(carID + " has parked");
-            
-            //park for a while
-			Thread.sleep(100);
-
-			System.out.println(carID + " is exiting");
-			//unpark the car and exit the parking lot
-			unparkCar();
 			
 		}catch(InterruptedException ie){
 	        System.out.println(carID +" interrupted.");

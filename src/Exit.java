@@ -15,9 +15,7 @@ public class Exit {
 		this.parkingLot = parkingLot;
 		this.carWaiting = true;
 		this.carQueue = new ArrayList<Car>();
-
 		
-		System.out.println(this.exitID + " has been created");
 	}
 	
 	/**

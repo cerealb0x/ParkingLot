@@ -13,7 +13,6 @@ public class Entry{
 		this.entryID = id;
 		this.locked = false;
 		
-		System.out.println(this.entryID + " has been created");
 	}
 
 	/**
@@ -36,11 +35,11 @@ public class Entry{
 	 * Signals the parking lot this entry is associated with
 	 * to check for available space
 	 */
-	public void checkLotCapacity(){
+	public boolean checkLotCapacity(){
 
 		synchronized(parkingLot){
 	
-			parkingLot.checkForAvailableSpace();
+			return parkingLot.checkForAvailableSpace();
 		}
 	}
 	

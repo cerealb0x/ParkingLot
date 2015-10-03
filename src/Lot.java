@@ -40,14 +40,15 @@ public class Lot {
 	 * Checks to see if there is currently any available space
 	 * in the parking lot
 	 */
-	public void checkForAvailableSpace(){
-		
+	public boolean checkForAvailableSpace(){
+		System.out.println("Lot: There are currently " + availableSpaces + " available parking in the lot \n");
 		if(availableSpaces > 0){
-			
 			unlockEntries();
+			parkCar();
+			return true;
 		}else{
-			
 			lockEntries();
+			return false;
 		}
 	}
 	
@@ -60,7 +61,7 @@ public class Lot {
 		while(it.hasNext()){
 			it.next().setLocked(false);
 		}
-		//System.out.println("entries have been unlocked");
+		System.out.println("Lot: The entries are unlocked \n");
 	}
 	
 	/**
@@ -72,7 +73,7 @@ public class Lot {
 		while(it.hasNext()){
 			it.next().setLocked(true);
 		}
-		//System.out.println("entries have been locked");
+		System.out.println("Lot: The entries are locked \n");
 
 	}
 	
@@ -83,10 +84,8 @@ public class Lot {
 	public void parkCar(){
 		
 		this.availableSpaces--;
-		checkForAvailableSpace();
-		System.out.println("There are "+ availableSpaces + " parking spaces left");
-		
-		
+	//	checkForAvailableSpace();
+				
 	}
 	
 	/**
@@ -96,8 +95,7 @@ public class Lot {
 	public void freeUpSpace(){
 		this.availableSpaces++;
 		//unlock entries should be called here
-		checkForAvailableSpace();
-		System.out.println("There are "+ availableSpaces + " parking spaces left");
+		//checkForAvailableSpace();
 
 	}
 	
