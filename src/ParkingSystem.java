@@ -12,8 +12,6 @@ import java.util.concurrent.TimeUnit;
 
 public class ParkingSystem {
 
-	
-	
 	private ArrayList<Entry> entries = new ArrayList<Entry>();
 	private ArrayList<Exit> exits = new ArrayList<Exit>();
 	private Lot parkingLot;
@@ -49,7 +47,7 @@ public class ParkingSystem {
 		        Executors.newScheduledThreadPool(numOfExits);
 
 		ScheduledFuture<?> scheduledFuture1 =
-		    scheduledExecutorService1.scheduleAtFixedRate(new Car(entries, exits, 0), 0, 3, TimeUnit.SECONDS);
+		    scheduledExecutorService1.scheduleAtFixedRate(new Car(entries, exits, 0), 0, 2, TimeUnit.SECONDS);
 		
 		ScheduledFuture<?> scheduledFuture2 =
 			    scheduledExecutorService2.scheduleAtFixedRate(new Car(entries, exits, 1), 4, 4, TimeUnit.SECONDS);
@@ -66,7 +64,7 @@ public class ParkingSystem {
 	
 		ArrayList<Entry> entries = new ArrayList<Entry>();
 		ArrayList<Exit> exits = new ArrayList<Exit>();
-		Lot parkingLot = new Lot(1000);
+		Lot parkingLot = new Lot(2);
 
 		for(int i = 0; i < 100; i++){
 			entries.add(new Entry("entry"+i, parkingLot));
@@ -85,10 +83,10 @@ public class ParkingSystem {
 		        Executors.newScheduledThreadPool(25);
 
 		ScheduledFuture<?> scheduledFuture1 =
-		    scheduledExecutorService1.scheduleWithFixedDelay(new Car(entries, exits, 0), 0, 2, TimeUnit.SECONDS);
+		    scheduledExecutorService1.scheduleWithFixedDelay(new Car(entries, exits, 0), 0, 5, TimeUnit.SECONDS);
 		
 		ScheduledFuture<?> scheduledFuture2 =
-			    scheduledExecutorService2.scheduleWithFixedDelay(new Car(entries, exits, 1), 10, 2, TimeUnit.SECONDS);
+			    scheduledExecutorService2.scheduleWithFixedDelay(new Car(entries, exits, 1), 0, 1, TimeUnit.SECONDS);
 
 					
 		scheduledFuture1.get();

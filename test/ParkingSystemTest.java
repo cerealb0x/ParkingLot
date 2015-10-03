@@ -25,7 +25,7 @@ public class ParkingSystemTest {
 	}
 	
 	@Test
-	public void unlockingWhenAvailableSpaceTest(){
+	public void defaultUnlockStateTest(){
 		System.out.println("unlocking when available space test");
 		Lot parkingLot = new Lot(2);
 		Entry entry = new Entry("test", parkingLot);
@@ -36,6 +36,28 @@ public class ParkingSystemTest {
 		parkingLot.checkForAvailableSpace();
 		assertFalse(entry.isLocked());
 		
+	}
+	
+	@Test
+	public void unlockAfterLockingTest(){
+		System.out.println("unlock after locking test");
+		Lot parkingLot = new Lot(1);
+		Entry entry = new Entry("Test", parkingLot);
+		Exit exit = new Exit("Test", parkingLot);
+		ArrayList<Entry> entries = new ArrayList<Entry>();
+		ArrayList<Exit> exits = new ArrayList<Exit>();
+		
+		entries.add(entry);
+		exits.add(exit);
+		parkingLot.setEntries(entries);
+		parkingLot.setExits(exits);
+		
+		entry.checkLotCapacity();
+		entry.checkLotCapacity();
+		assertTrue(entry.isLocked());
+		exit.notifyLotOfExitingCar();
+		entry.checkLotCapacity();
+		assertFalse(entry.isLocked());
 	}
 	
 	@Test
@@ -64,8 +86,33 @@ public class ParkingSystemTest {
 		parkingLot.setEntries(entries);
 		parkingLot.setExits(exits);
 		
+		entry.checkLotCapacity();
+		entry.checkLotCapacity();
 		exit.notifyLotOfExitingCar();
-		assertTrue(parkingLot.getAvailableSpaces() == 1001);
+		assertTrue(parkingLot.getAvailableSpaces() == 999);
+	}
+	
+	@Test
+	public void emptyParkLotPreventsExitsTest(){
+		Lot parkingLot = new Lot(1234);
+		Entry entry = new Entry("test", parkingLot);
+		Exit exit = new Exit("test", parkingLot);
+		ArrayList<Entry> entries = new ArrayList<Entry>();
+		entries.add(entry);
+		ArrayList<Exit> exits = new ArrayList<Exit>();
+		exits.add(exit);
+		parkingLot.setEntries(entries);
+		parkingLot.setExits(exits);
+		
+		exit.notifyLotOfExitingCar();
+		assertTrue(parkingLot.getAvailableSpaces() == 1234);
+		
+	}
+	
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void negativeAvailableSpacesTest(){
+		Lot parkingLot = new Lot(-1);
 	}
 	
 	/*

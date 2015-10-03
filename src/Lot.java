@@ -17,6 +17,10 @@ public class Lot {
 		this.availableSpaces = capacity;
 	}
 
+	/**
+	 * Getter method for the max capacity of parking spaces in this lot
+	 * @return the max number of parking spaces that this lot was initialized with
+	 */
 	public int getCapacity() {
 		return capacity;
 	}
@@ -54,6 +58,12 @@ public class Lot {
 		}
 	}
 	
+	/**
+	 * The lot checks to see if there are any cars in the parking lot
+	 * so that an exit request can be approved
+	 * @return true if there is at least 1 car parked in the lot (availableSpaces is not equal to capacity)
+	 * 			false if there are no cars parked in the lot (availableSpaces is equal to capacity)
+	 */
 	public boolean checkForCarsExiting(){
 		
 		if(availableSpaces != capacity){
