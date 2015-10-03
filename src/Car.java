@@ -1,11 +1,11 @@
 import java.util.ArrayList;
 import java.util.Random;
 
-
-
-/*This is the car class, which represents a car object that will be
+/**
+ * This is the car class, which represents a car object that will be
  * parking in the parking lot - each car will be run as an individual
- * thread, and so we implement the Runnable interface*/
+ * thread, and so we implement the Runnable interface 
+*/
 public class Car implements Runnable{
 	
 	private static int carCount;

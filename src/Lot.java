@@ -1,6 +1,13 @@
 import java.util.ArrayList;
 import java.util.Iterator;
 
+/**
+ * The Lot class represents the parking lot. It will contain a list of all entry gates and exit gates
+ * associated with it, as well as a count of its current available spaces as well as its total capacity.
+ * Entry gates and exit gates will notify the Lot with various pieces of information as cars arrive at them.
+ * The Lot object is then in charge of manipulating its number of available spaces as well as locking/unlocking
+ * gates
+ */
 
 public class Lot {
 

@@ -7,6 +7,11 @@ import java.util.concurrent.ThreadPoolExecutor;
 
 import org.junit.Test;
 
+/**
+ * 
+ * jUnit tests for the parking system and its classes
+ *
+ */
 
 public class ParkingSystemTest {
 
