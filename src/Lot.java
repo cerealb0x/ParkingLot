@@ -92,10 +92,8 @@ public class Lot {
 	 */
 	public void freeUpSpace(){
 		
-		System.out.println("Lot: There are currently " + availableSpaces + " available parking spaces in the lot \n");
 		this.availableSpaces++;
-		//unlock entries should be called here
-		//checkForAvailableSpace();
+		System.out.println("Lot: There are currently " + availableSpaces + " available parking spaces in the lot \n");
 
 	}
 	

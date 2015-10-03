@@ -22,14 +22,22 @@ public class Car implements Runnable{
 	private int status;
 	
 	
-	public Car(String carID, ArrayList<Entry> entries, ArrayList<Exit> exits, int status){
-		this.carCount = 0;
-		this.carID = carID; 
+	public Car(ArrayList<Entry> entries, ArrayList<Exit> exits, int status){
 		this.entries = entries;
 		this.exits = exits;
 		this.status = status;
 	}
 	
+	
+	
+	
+	public static int getCarCount() {
+		return carCount;
+	}
+
+
+
+
 	/**
 	 * Getter method for the Car's entry 
 	 * @return the entry that this car has chosen
@@ -132,31 +140,28 @@ public class Car implements Runnable{
 	 */
 	public void run(){
 	
-		carCount++;
-		this.carID = "Car#"+carCount;
-		
 		if(this.status == 0){
 			//select an entrace
 			
 			this.setEntry(entries.get(selectEntry(entries.size())));
-			System.out.print("Car: " + carID + " has arrived at "+ entry.getEntryID() + "\n");
+			System.out.print("Car: A car has arrived at "+ entry.getEntryID() + "\n");
             //let the entry know that this car has arrived
             boolean entryGranted = notifyEntry();           
         
             
             //if the entry is locked, the lot is full and the car drives away
             if(!entryGranted){
-            	System.out.println("Car: " + carID + " turned around \n");
+            	System.out.println("Car: A car has turned around \n");
             } else{   
             //otherwise, the car gains entry and parks in the lot	
-            	System.out.print("Car: " + carID + " will now park \n");
+            	System.out.print("Car: A car will now park \n");
                 //park for a while
     		
             }    	      	
 		}else{
 			
 				this.setExit(exits.get(selectExit(exits.size())));
-				System.out.print("Car: " + carID + " will now exit the lot \n");
+				System.out.print("Car: A parked car will now exit the lot \n");
 				unparkCar();
 			}
 		
