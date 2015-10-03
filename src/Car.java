@@ -1,28 +1,33 @@
 import java.util.ArrayList;
 import java.util.Random;
 
+
+
 /*This is the car class, which represents a car object that will be
  * parking in the parking lot - each car will be run as an individual
  * thread, and so we implement the Runnable interface*/
 public class Car implements Runnable{
 
 	
+	public enum Status{ENTERING, EXITING};
+	
+	
+	private static int carCount;
 	private Thread t;
 	private ArrayList<Entry> entries;	//a list of all the entries in the parking lot
 	private Entry entry;				//the entry that this car will use
 	private ArrayList<Exit> exits;		//a list of all the exits in the parking lot
 	private Exit exit;					//the exit that this car will use
 	private String carID;				//a String ID used to distinguish this car object
-	private boolean permanentlyPark;
+	private int status;
 	
 	
-	public Car(String carID, ArrayList<Entry> entries, ArrayList<Exit> exits){
+	public Car(String carID, ArrayList<Entry> entries, ArrayList<Exit> exits, int status){
+		this.carCount = 0;
 		this.carID = carID; 
 		this.entries = entries;
-		this.entry = entries.get(selectEntry(entries.size()));
 		this.exits = exits;
-		this.exit = exits.get(selectExit(exits.size()));
-		this.permanentlyPark = selectPermanentParkStatus();
+		this.status = status;
 	}
 	
 	/**
@@ -126,12 +131,19 @@ public class Car implements Runnable{
 	 * and finally exiting
 	 */
 	public void run(){
-		try{
+	
+		carCount++;
+		this.carID = "Car#"+carCount;
+		
+		if(this.status == 0){
+			//select an entrace
 			
+			this.setEntry(entries.get(selectEntry(entries.size())));
 			System.out.print("Car: " + carID + " has arrived at "+ entry.getEntryID() + "\n");
             //let the entry know that this car has arrived
             boolean entryGranted = notifyEntry();           
         
+            
             //if the entry is locked, the lot is full and the car drives away
             if(!entryGranted){
             	System.out.println("Car: " + carID + " turned around \n");
@@ -139,24 +151,18 @@ public class Car implements Runnable{
             //otherwise, the car gains entry and parks in the lot	
             	System.out.print("Car: " + carID + " will now park \n");
                 //park for a while
-    			Thread.sleep(1000);
-
-    			//Check if this car is permanently parking in this lot
-    			if(!this.permanentlyPark){
-    				System.out.print("Car: " + carID + " will now exit the lot \n");
-    				//unpark the car and exit the parking lot
-    				unparkCar();
-    			}
-            }
-            
+    		
+            }    	      	
+		}else{
 			
-		}catch(InterruptedException ie){
-	        System.out.println(carID +" interrupted.");
-		}
+				this.setExit(exits.get(selectExit(exits.size())));
+				System.out.print("Car: " + carID + " will now exit the lot \n");
+				unparkCar();
+			}
 		
-
 	}
 	
+	/*
 	public void start(){
 	     if (t == null)
 	      {
@@ -164,7 +170,7 @@ public class Car implements Runnable{
 	         t.start();
 	      }
 	}
-	
+	*/
 		
 	
 	

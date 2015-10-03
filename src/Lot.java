@@ -39,7 +39,7 @@ public class Lot {
 	 * in the parking lot
 	 */
 	public boolean checkForAvailableSpace(){
-		System.out.println("Lot: There are currently " + availableSpaces + " available parking in the lot \n");
+		System.out.println("Lot: There are currently " + availableSpaces + " available parking spaces in the lot \n");
 		if(availableSpaces > 0){
 			unlockEntries();
 			parkCar();
@@ -91,6 +91,8 @@ public class Lot {
 	 * whenever a car exits
 	 */
 	public void freeUpSpace(){
+		
+		System.out.println("Lot: There are currently " + availableSpaces + " available parking spaces in the lot \n");
 		this.availableSpaces++;
 		//unlock entries should be called here
 		//checkForAvailableSpace();
