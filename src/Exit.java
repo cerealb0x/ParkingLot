@@ -14,9 +14,9 @@ public class Exit {
 	/**
 	 * Signals the parking lot of a car exiting the lot
 	 */
-	public void notifyLotOfExitingCar(){
+	public boolean notifyLotOfExitingCar(){
 		synchronized(parkingLot){
-			parkingLot.freeUpSpace();
+			return parkingLot.checkForCarsExiting();
 		}
 	}
 	

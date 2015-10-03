@@ -28,7 +28,7 @@ public class ParkingSystem {
 		this.numOfEntries = numOfEntries;
 		this.numOfExits = numOfExits;
 		this.numOfCars = numOfCars;
-		parkingLot = new Lot(numOfSpaces, numOfEntries, numOfExits);
+		parkingLot = new Lot(numOfSpaces);
 		
 		for(int i = 0; i < numOfEntries; i++){
 			entries.add(new Entry("entry"+i, parkingLot));
@@ -66,29 +66,29 @@ public class ParkingSystem {
 	
 		ArrayList<Entry> entries = new ArrayList<Entry>();
 		ArrayList<Exit> exits = new ArrayList<Exit>();
-		Lot parkingLot = new Lot(1,2,2);
+		Lot parkingLot = new Lot(1000);
 
-		for(int i = 0; i < 20; i++){
+		for(int i = 0; i < 100; i++){
 			entries.add(new Entry("entry"+i, parkingLot));
 		}
 		parkingLot.setEntries(entries);
 
-		for(int k = 0; k < 3; k++){
+		for(int k = 0; k < 25; k++){
 			exits.add(new Exit("exit"+k, parkingLot));
 		}
 		parkingLot.setExits(exits);
 
 
 		ScheduledExecutorService scheduledExecutorService1 =
-		        Executors.newScheduledThreadPool(20); 
+		        Executors.newScheduledThreadPool(100); 
 		ScheduledExecutorService scheduledExecutorService2 =
-		        Executors.newScheduledThreadPool(3);
+		        Executors.newScheduledThreadPool(25);
 
 		ScheduledFuture<?> scheduledFuture1 =
-		    scheduledExecutorService1.scheduleAtFixedRate(new Car(entries, exits, 0), 0, 3, TimeUnit.SECONDS);
+		    scheduledExecutorService1.scheduleWithFixedDelay(new Car(entries, exits, 0), 0, 2, TimeUnit.SECONDS);
 		
 		ScheduledFuture<?> scheduledFuture2 =
-			    scheduledExecutorService2.scheduleAtFixedRate(new Car(entries, exits, 1), 4, 4, TimeUnit.SECONDS);
+			    scheduledExecutorService2.scheduleWithFixedDelay(new Car(entries, exits, 1), 10, 2, TimeUnit.SECONDS);
 
 					
 		scheduledFuture1.get();

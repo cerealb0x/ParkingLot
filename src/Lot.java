@@ -5,19 +5,22 @@ import java.util.Iterator;
 public class Lot {
 
 	private int capacity;
-	private int numOfEntries;
-	private int numOfExits;
 	private int availableSpaces;
 	private ArrayList<Entry> entries;
 	private ArrayList<Exit> exits;
 	
-	public Lot(int capacity, int numOfEntries, int numOfExits){
+	public Lot(int capacity) throws IllegalArgumentException{
+		if(capacity < 0){
+			throw new IllegalArgumentException("Negative number of parking spaces is not allowed");
+		}
 		this.capacity = capacity;
 		this.availableSpaces = capacity;
-		this.numOfEntries = numOfEntries;
-		this.numOfExits = numOfExits;
 	}
-	
+
+	public int getCapacity() {
+		return capacity;
+	}
+
 	/**
 	 * Getter method for the available spaces variable
 	 * @return number of available spaces in this lot
@@ -40,6 +43,7 @@ public class Lot {
 	 */
 	public boolean checkForAvailableSpace(){
 		System.out.println("Lot: There are currently " + availableSpaces + " available parking spaces in the lot \n");
+		//consider returning the number of available space instead so that the Entry could report it
 		if(availableSpaces > 0){
 			unlockEntries();
 			parkCar();
@@ -49,6 +53,18 @@ public class Lot {
 			return false;
 		}
 	}
+	
+	public boolean checkForCarsExiting(){
+		
+		if(availableSpaces != capacity){
+			freeUpSpace();
+			return true;
+		}else{
+			return false;
+		}
+		
+	}
+	
 	
 	/**
 	 * Unlocks all of the entries associated with this lot
@@ -79,11 +95,8 @@ public class Lot {
 	 * Decrements the amount of available spaces, done so
 	 * whenever a car is parked
 	 */
-	public void parkCar(){
-		
-		this.availableSpaces--;
-	//	checkForAvailableSpace();
-				
+	public void parkCar(){		
+		this.availableSpaces--;				
 	}
 	
 	/**

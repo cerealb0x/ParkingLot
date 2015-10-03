@@ -7,10 +7,6 @@ import java.util.Random;
  * parking in the parking lot - each car will be run as an individual
  * thread, and so we implement the Runnable interface*/
 public class Car implements Runnable{
-
-	
-	public enum Status{ENTERING, EXITING};
-	
 	
 	private static int carCount;
 	private Thread t;
@@ -27,16 +23,10 @@ public class Car implements Runnable{
 		this.exits = exits;
 		this.status = status;
 	}
-	
-	
-	
-	
+
 	public static int getCarCount() {
 		return carCount;
 	}
-
-
-
 
 	/**
 	 * Getter method for the Car's entry 
@@ -101,7 +91,7 @@ public class Car implements Runnable{
 		
 	}
 	
-	
+
 	public boolean selectPermanentParkStatus(){
 		
 		int index;
@@ -127,8 +117,8 @@ public class Car implements Runnable{
 	 * Signals the parking lot of this car
 	 * exiting its space and the parking lot
 	 */
-	public void unparkCar(){
-		exit.notifyLotOfExitingCar();
+	public boolean unparkCar(){
+		return exit.notifyLotOfExitingCar();
 	}
 	
 	
@@ -160,23 +150,16 @@ public class Car implements Runnable{
             }    	      	
 		}else{
 			
-				this.setExit(exits.get(selectExit(exits.size())));
-				System.out.print("Car: A parked car will now exit the lot \n");
-				unparkCar();
+			this.setExit(exits.get(selectExit(exits.size())));
+			boolean exitGranted = unparkCar();
+			if(exitGranted){
+				System.out.println("Car: A car is now exiting");
 			}
+			
+			
+		}
 		
 	}
-	
-	/*
-	public void start(){
-	     if (t == null)
-	      {
-	         t = new Thread(this, "car");
-	         t.start();
-	      }
-	}
-	*/
-		
 	
 	
 }

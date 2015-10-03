@@ -14,7 +14,7 @@ public class ParkingSystemTest {
 	@Test
 	public void lockingWhenNoAvailableSpaceTest(){
 		System.out.println("locking when no available space test");
-		Lot parkingLot = new Lot(0,2,2);
+		Lot parkingLot = new Lot(0);
 		Entry entry = new Entry("test", parkingLot);
 		ArrayList<Entry> entries = new ArrayList<Entry>();
 		entries.add(entry);
@@ -27,7 +27,7 @@ public class ParkingSystemTest {
 	@Test
 	public void unlockingWhenAvailableSpaceTest(){
 		System.out.println("unlocking when available space test");
-		Lot parkingLot = new Lot(2,2,2);
+		Lot parkingLot = new Lot(2);
 		Entry entry = new Entry("test", parkingLot);
 		ArrayList<Entry> entries = new ArrayList<Entry>();
 		entries.add(entry);
@@ -41,7 +41,7 @@ public class ParkingSystemTest {
 	@Test
 	public void parkingCausesSpaceDecrementTest(){
 		System.out.println("parking causing decrement test");
-		Lot parkingLot = new Lot(100,1,1);
+		Lot parkingLot = new Lot(100);
 		Entry entry = new Entry("test", parkingLot);
 		ArrayList<Entry> entries = new ArrayList<Entry>();
 		entries.add(entry);
@@ -54,7 +54,7 @@ public class ParkingSystemTest {
 	@Test
 	public void exitingCausesSpaceIncrementTest(){
 		System.out.println("exiting causing increment test");
-		Lot parkingLot = new Lot(1000,1,1);
+		Lot parkingLot = new Lot(1000);
 		Entry entry = new Entry("test", parkingLot);
 		Exit exit = new Exit("test", parkingLot);
 		ArrayList<Entry> entries = new ArrayList<Entry>();
