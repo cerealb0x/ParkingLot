@@ -142,11 +142,14 @@ public class Car implements Runnable{
             } else{   
             	System.out.print("Car: " + carID + " will now park \n");
                 //park for a while
-    			Thread.sleep(100);
+    			Thread.sleep(1000);
 
-    			System.out.print("Car: " + carID + " will now exit the lot \n");
-    			//unpark the car and exit the parking lot
-    			unparkCar();
+    			//Check if this car is permanently parking in this lot
+    			if(!this.permanentlyPark){
+    				System.out.print("Car: " + carID + " will now exit the lot \n");
+    				//unpark the car and exit the parking lot
+    				unparkCar();
+    			}
             }
             
 			
