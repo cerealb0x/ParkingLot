@@ -7,6 +7,8 @@ import java.util.concurrent.ThreadPoolExecutor;
 
 import org.junit.Test;
 
+import java.util.Scanner;
+
 /**
  * 
  * jUnit tests for the parking system and its classes
@@ -120,75 +122,52 @@ public class ParkingSystemTest {
 		Lot parkingLot = new Lot(-1);
 	}
 	
-	/*
-	@Test
-	public void oneSpaceAndTwoCarsTest() throws ExecutionException, InterruptedException{
-		System.out.println("one space two cars test");
+	/**
+	 * 
+	 * Main method to test various values for the parking lot (entry count, exit count,etc.)
+	 * as well as the general behaviour of the system
+	 * @throws ExecutionException
+	 * @throws InterruptedException
+	 */
+	
+	public static void main(String [] args) throws ExecutionException, InterruptedException{
+		String scenario1 = "(1) : 1 parking space, 1 entry, 1 exit, 2s delay between entries, exits after 3s w/ 2s delays";
+		String scenario2 = "(2) : 10 parking spaces, 5 entries, 3 entries, 2s delay b/w entries, exits after 20s w/ 5s delays";
+		String scenario3 = "(3) : 50 parking spaces, 20 entries, 10 entries, entries after 5s w/ 10s delays, exits after 50s w/ 2s delays";
+		String scenario4 = "(4) : Entries locked for a long time";
+		
 		ParkingSystem ps = new ParkingSystem();
-		ps.testStart(1,2,2,2);
+		int selectedScenario = 0;
 		
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Select a Parking Lot System Scenario: ");
+		System.out.println(scenario1);
+		System.out.println(scenario2);
+		System.out.println(scenario3);
+		System.out.println(scenario4);
+		
+        if (sc.hasNextInt()) {
+          selectedScenario = sc.nextInt();
+        }
+
+        
+        switch(selectedScenario){
+        	//parameters: num of parking spaces, num of entries, num of exits, time delay before the first car comes,
+        	//			  time delay between entering cars, time delay before the first car exits, time delay between exits
+        	case 1: ps.startSystem(1, 1, 1, 0, 2, 3, 2);
+        			break;
+        	case 2: ps.startSystem(10, 5, 3, 0, 2, 20, 5);
+        			break;
+        	case 3: ps.startSystem(50, 20, 10, 5, 10, 50, 2);
+        			break;
+        			
+        	case 4:  ps.startSystem(10, 10, 10, 0, 2, 1000, 1);
+        			break;
+        	default:
+        			System.out.println("You entered an invalid input");
+        
+        }
+        
 	}
 	
-	@Test
-	public void manyCarsTest() throws ExecutionException, InterruptedException{
-		System.out.println("many cars test");
-		ParkingSystem ps = new ParkingSystem();
-		ps.testStart(50, 5, 3, 100);
-	}
-	*/
-	/*
-	@Test
-	public void equalExitsAndEntriesTest(){
-		ArrayList<Entry> entries = new ArrayList<Entry>();
-		ArrayList<Exit> exits = new ArrayList<Exit>();
-		Lot parkingLot = new Lot(8,3,3);
-
-		for(int i = 0; i < 3; i++){
-			entries.add(new Entry("entry"+i, parkingLot));
-		}
-		parkingLot.setEntries(entries);
-
-		for(int k = 0; k < 3; k++){
-			exits.add(new Exit("exit"+k, parkingLot));
-		}
-		parkingLot.setExits(exits);
-		
-		ThreadPoolExecutor executor = (ThreadPoolExecutor) Executors.newFixedThreadPool(3);
-		for(int j = 0; j<10; j++){
-			Car car = new Car("car"+j, entries, exits);
-			executor.execute(car);
-		}
-	
-		executor.shutdown();
-		
-	}
-	
-	@Test
-	public void singleAvailableSpaceTest(){
-		
-		ArrayList<Entry> entries = new ArrayList<Entry>();
-		ArrayList<Exit> exits = new ArrayList<Exit>();
-		Lot parkingLot = new Lot(1,3,3);
-
-		for(int i = 0; i < 3; i++){
-			entries.add(new Entry("entry"+i, parkingLot));
-		}
-		parkingLot.setEntries(entries);
-
-		for(int k = 0; k < 3; k++){
-			exits.add(new Exit("exit"+k, parkingLot));
-		}
-		parkingLot.setExits(exits);
-		
-		ThreadPoolExecutor executor = (ThreadPoolExecutor) Executors.newFixedThreadPool(3);
-		for(int j = 0; j<10; j++){
-			Car car = new Car("car"+j, entries, exits);
-			executor.execute(car);
-		}
-	
-		executor.shutdown();
-		
-		
-	}*/
-
 }

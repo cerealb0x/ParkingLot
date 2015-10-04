@@ -53,7 +53,7 @@ public class Lot {
 	 * in the parking lot
 	 */
 	public boolean checkForAvailableSpace(){
-		System.out.println("Lot: There are currently " + availableSpaces + " available parking spaces in the lot \n");
+		System.out.println("Lot (Enter): There are currently " + availableSpaces + " available parking spaces in the lot");
 		//consider returning the number of available space instead so that the Entry could report it
 		if(availableSpaces > 0){
 			unlockEntries();
@@ -74,6 +74,7 @@ public class Lot {
 	public boolean checkForCarsExiting(){
 		
 		if(availableSpaces != capacity){
+			System.out.println("Car: A car is now exiting");
 			freeUpSpace();
 			return true;
 		}else{
@@ -123,7 +124,7 @@ public class Lot {
 	public void freeUpSpace(){
 		
 		this.availableSpaces++;
-		System.out.println("Lot: There are currently " + availableSpaces + " available parking spaces in the lot \n");
+		System.out.println("Lot (Exit): There are currently " + availableSpaces + " available parking spaces in the lot \n");
 
 	}
 	

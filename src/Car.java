@@ -151,10 +151,8 @@ public class Car implements Runnable{
 		}else{
 			
 			this.setExit(exits.get(selectExit(exits.size())));
-			boolean exitGranted = unparkCar();
-			if(exitGranted){
-				System.out.println("Car: A car is now exiting");
-			}
+			unparkCar();
+
 			
 			
 		}
