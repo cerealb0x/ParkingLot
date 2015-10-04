@@ -135,8 +135,8 @@ public class ParkingSystemTest {
 		String scenario2 = "(2) : 10 parking spaces, 5 entries, 3 entries, 2s delay b/w entries, exits after 20s w/ 5s delays";
 		String scenario3 = "(3) : 50 parking spaces, 20 entries, 10 entries, entries after 5s w/ 10s delays, exits after 50s w/ 2s delays";
 		String scenario4 = "(4) : Entries locked for a long time";
+		ParkingSystem ps;
 		
-		ParkingSystem ps = new ParkingSystem();
 		int selectedScenario = 0;
 		
 		Scanner sc = new Scanner(System.in);
@@ -154,18 +154,23 @@ public class ParkingSystemTest {
         switch(selectedScenario){
         	//parameters: num of parking spaces, num of entries, num of exits, time delay before the first car comes,
         	//			  time delay between entering cars, time delay before the first car exits, time delay between exits
-        	case 1: ps.startSystem(1, 1, 1, 0, 2, 3, 2);
+        	case 1: ps = new ParkingSystem(1, 1, 1, 0, 2, 3, 2);
+            		ps.startSystem();
         			break;
-        	case 2: ps.startSystem(10, 5, 3, 0, 2, 20, 5);
+        	case 2: ps = new ParkingSystem(10, 5, 3, 0, 2, 20, 5);
+        			ps.startSystem();
         			break;
-        	case 3: ps.startSystem(50, 20, 10, 5, 10, 50, 2);
+        	case 3: ps = new ParkingSystem(50, 20, 10, 5, 10, 50, 2);
+        			ps.startSystem();
         			break;
         			
-        	case 4:  ps.startSystem(10, 10, 10, 0, 2, 1000, 1);
+        	case 4: ps = new ParkingSystem(10, 10, 10, 0, 2, 1000, 1); 
+        			ps.startSystem();
         			break;
         	default:
         			System.out.println("You entered an invalid input");
-        
+        			
+        	
         }
         
 	}

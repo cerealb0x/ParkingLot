@@ -17,7 +17,11 @@ public class Car implements Runnable{
 	private String carID;				//a String ID used to distinguish this car object
 	private int status;
 	
-	
+	/**
+	 * Car object constructor
+	 * @param entries list for this lot, exits list for this lot, 
+	 * 		  status of car (entering or exiting)
+	 */
 	public Car(ArrayList<Entry> entries, ArrayList<Exit> exits, int status){
 		this.entries = entries;
 		this.exits = exits;
@@ -85,25 +89,11 @@ public class Car implements Runnable{
 		int index;
 		Random randomizer = new Random();
 		index = randomizer.nextInt(numOfExits);
-		
-		
+			
 		return index;
 		
 	}
 	
-
-	public boolean selectPermanentParkStatus(){
-		
-		int index;
-		boolean boolArr[] = {false, true};
-		Random randomizer = new Random();
-		index = randomizer.nextInt(2);
-		
-		
-		return boolArr[index];
-	}
-	
-
 	/**
 	 * Signals the entry gate that this car has arrived at it
 	 * @return the entry gate will return a boolean value
@@ -117,8 +107,8 @@ public class Car implements Runnable{
 	 * Signals the parking lot of this car
 	 * exiting its space and the parking lot
 	 */
-	public boolean unparkCar(){
-		return exit.notifyLotOfExitingCar();
+	public void unparkCar(){
+		exit.notifyLotOfExitingCar();
 	}
 	
 	
@@ -132,8 +122,8 @@ public class Car implements Runnable{
 	
 		if(this.status == 0){
 			//select an entrace
-			
 			this.setEntry(entries.get(selectEntry(entries.size())));
+			
 			System.out.print("Car: A car has arrived at "+ entry.getEntryID() + "\n");
             //let the entry know that this car has arrived
             boolean entryGranted = notifyEntry();           

@@ -28,7 +28,7 @@ public class ParkingSystem {
 	private int numOfExits;
 	
 	
-	public void startSystem(int numOfSpaces, int numOfEntries, int numOfExits, int firstCarEntryTime, int enteringCarsDelay, int firstCarExitTime, int exitingCarsDelay) throws ExecutionException, InterruptedException{
+	public ParkingSystem(int numOfSpaces, int numOfEntries, int numOfExits, int firstCarEntryTime, int enteringCarsDelay, int firstCarExitTime, int exitingCarsDelay){
 		this.numOfSpaces = numOfSpaces;
 		this.numOfEntries = numOfEntries;
 		this.numOfExits = numOfExits;
@@ -37,7 +37,10 @@ public class ParkingSystem {
 		this.firstCarExitTime = firstCarExitTime;
 		this.exitingCarsDelay = exitingCarsDelay;
 		parkingLot = new Lot(numOfSpaces);
-		
+	}
+	
+	public void startSystem() throws ExecutionException, InterruptedException{
+	
 		for(int i = 0; i < numOfEntries; i++){
 			entries.add(new Entry("entry"+i, parkingLot));
 		}

@@ -10,6 +10,10 @@ public class Entry{
 	private Lot parkingLot;
 	private boolean locked;
 	
+	/**
+	 * Entry object constructor
+	 * @param id of this entry, the parking lot object it is associated with
+	 */
 	public Entry(String id, Lot parkingLot){
 		this.parkingLot = parkingLot;
 		this.entryID = id;
@@ -73,15 +77,5 @@ public class Entry{
 	
 		this.locked = locked;
 	}
-
-	public Lot getParkingLot() {
-		return parkingLot;
-	}
-
-	public void setParkingLot(Lot parkingLot) {
-		this.parkingLot = parkingLot;
-	}
-	
-	
 	
 }

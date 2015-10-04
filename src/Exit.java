@@ -10,8 +10,10 @@ public class Exit {
 	private String exitID;
 	private Lot parkingLot;
 	
-	
-	
+	/**
+	 * Exit object constructor
+	 * @param id, parkingLot
+	 */
 	public Exit(String id, Lot parkingLot){
 		this.exitID = id;
 		this.parkingLot = parkingLot;
@@ -21,9 +23,9 @@ public class Exit {
 	/**
 	 * Signals the parking lot of a car exiting the lot
 	 */
-	public boolean notifyLotOfExitingCar(){
+	public void notifyLotOfExitingCar(){
 		synchronized(parkingLot){
-			return parkingLot.checkForCarsExiting();
+			parkingLot.checkForCarsExiting();
 		}
 	}
 	
