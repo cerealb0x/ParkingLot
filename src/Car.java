@@ -8,13 +8,10 @@ import java.util.Random;
 */
 public class Car implements Runnable{
 	
-	private static int carCount;
-	private Thread t;
 	private ArrayList<Entry> entries;	//a list of all the entries in the parking lot
 	private Entry entry;				//the entry that this car will use
 	private ArrayList<Exit> exits;		//a list of all the exits in the parking lot
 	private Exit exit;					//the exit that this car will use
-	private String carID;				//a String ID used to distinguish this car object
 	private int status;
 	
 	/**
@@ -28,9 +25,6 @@ public class Car implements Runnable{
 		this.status = status;
 	}
 
-	public static int getCarCount() {
-		return carCount;
-	}
 
 	/**
 	 * Getter method for the Car's entry 
