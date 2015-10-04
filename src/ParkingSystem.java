@@ -27,7 +27,11 @@ public class ParkingSystem {
 	private int numOfEntries;
 	private int numOfExits;
 	
-	
+	/**
+	 * ParkingSystem constructor
+	 * @param num of parking spaces, num of entry gates, num of exit gates, entry time for first car
+	 * @param delay between entries, exit time of first car, delay between exits
+	 */
 	public ParkingSystem(int numOfSpaces, int numOfEntries, int numOfExits, int firstCarEntryTime, int enteringCarsDelay, int firstCarExitTime, int exitingCarsDelay){
 		this.numOfSpaces = numOfSpaces;
 		this.numOfEntries = numOfEntries;
@@ -41,22 +45,25 @@ public class ParkingSystem {
 	
 	public void startSystem() throws ExecutionException, InterruptedException{
 	
+		//Create the entry gates and link them to the parking lot
 		for(int i = 0; i < numOfEntries; i++){
 			entries.add(new Entry("entry"+i, parkingLot));
 		}
 		parkingLot.setEntries(entries);
 
+		//Create the exit gates and link them to the parking lot
 		for(int k = 0; k < numOfExits; k++){
 			exits.add(new Exit("exit"+k, parkingLot));
 		}
 		parkingLot.setExits(exits);
 		
-		
+		//Create a thread pool based on the number of entries and exits for this lot
 		ScheduledExecutorService scheduledExecutorService1 =
 		        Executors.newScheduledThreadPool(numOfEntries); 
 		ScheduledExecutorService scheduledExecutorService2 =
 		        Executors.newScheduledThreadPool(numOfExits);
 
+		//Schedule the threads, which will act as Car objects entering and exiting the parking lot
 		ScheduledFuture<?> scheduledFuture1 =
 		    scheduledExecutorService1.scheduleWithFixedDelay(new Car(entries, exits, 0), firstCarEntryTime, enteringCarsDelay, TimeUnit.SECONDS);
 		
