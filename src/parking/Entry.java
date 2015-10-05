@@ -1,3 +1,4 @@
+package parking;
 /**
  * The Entry class that represents the entry gates that lead into the parking lot. Entry gates will have a 
  * locked state that determines whether or not they can let cars in (which depend on the current number

@@ -1,3 +1,4 @@
+package parking;
 
 /**
  * The Exit class represents the exit gates of the parking lot. These gates will notify the

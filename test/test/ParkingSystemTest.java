@@ -1,3 +1,4 @@
+package test;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
@@ -6,6 +7,11 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadPoolExecutor;
 
 import org.junit.Test;
+
+import parking.Entry;
+import parking.Exit;
+import parking.Lot;
+import parking.ParkingSystem;
 
 import java.util.Scanner;
 
