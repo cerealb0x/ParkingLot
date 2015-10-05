@@ -72,14 +72,11 @@ public class Lot {
 	 * @return true if there is at least 1 car parked in the lot (availableSpaces is not equal to capacity)
 	 * 			false if there are no cars parked in the lot (availableSpaces is equal to capacity)
 	 */
-	public boolean checkForCarsExiting(){
+	public void checkForCarsExiting(){
 		
 		if(availableSpaces != capacity){
 			System.out.println("Car: A car is now exiting");
 			freeUpSpace();
-			return true;
-		}else{
-			return false;
 		}
 		
 	}

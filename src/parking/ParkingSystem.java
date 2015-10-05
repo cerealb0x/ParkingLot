@@ -17,16 +17,16 @@ import java.util.concurrent.TimeUnit;
 
 public class ParkingSystem {
 
-	private ArrayList<Entry> entries = new ArrayList<Entry>();
-	private ArrayList<Exit> exits = new ArrayList<Exit>();
-	private int firstCarEntryTime;
-	private int enteringCarsDelay;
-	private int firstCarExitTime;
-	private int exitingCarsDelay;
-	private Lot parkingLot;
-	private int numOfSpaces;
-	private int numOfEntries;
-	private int numOfExits;
+	private static ArrayList<Entry> entries = new ArrayList<Entry>();
+	private static ArrayList<Exit> exits = new ArrayList<Exit>();
+	private static int firstCarEntryTime;
+	private static int enteringCarsDelay;
+	private static int firstCarExitTime;
+	private static int exitingCarsDelay;
+	private static Lot parkingLot;
+	private static int numOfSpaces;
+	private static int numOfEntries;
+	private static int numOfExits;
 	
 	/**
 	 * ParkingSystem constructor
@@ -44,7 +44,7 @@ public class ParkingSystem {
 		parkingLot = new Lot(numOfSpaces);
 	}
 	
-	public void startSystem() throws ExecutionException, InterruptedException{
+	public static void startSystem() throws ExecutionException, InterruptedException{
 	
 		//Create the entry gates and link them to the parking lot
 		for(int i = 0; i < numOfEntries; i++){

@@ -42,6 +42,61 @@ public class ParkingSystemTest {
 		assertTrue(entry.isLocked());
 	}
 	
+	
+	/**
+	 * Tests if ALL entries are locked when there are no available spaces
+	 * Expected Output: entry1.isLocked() == true, entry2.isLocked() == true
+	 */
+	
+	@Test
+	public void multipleEntriesLockTest(){
+		Lot parkingLot = new Lot(0);
+		Entry entry1 = new Entry("test1", parkingLot);
+		Entry entry2 = new Entry("test2", parkingLot);
+		ArrayList<Entry> entries = new ArrayList<Entry>();
+		entries.add(entry1);
+		entries.add(entry2);
+		parkingLot.setEntries(entries);
+		
+		entry1.checkLotCapacity();
+		entry2.checkLotCapacity();
+		assertTrue(entry1.isLocked());
+		assertTrue(entry2.isLocked());
+	}
+	
+	/**
+	 * Tests to see if ALL entries unlock
+	 * Expected Output: entry1.isLocked() == false, entry2.isLocked() == false
+	 */
+	
+	@Test
+	public void multipleEntriesUnlockTest(){
+		Lot parkingLot = new Lot(2);
+		Entry entry1 = new Entry("test1", parkingLot);
+		Entry entry2 = new Entry("test2", parkingLot);
+		Exit exit1 = new Exit("Test1", parkingLot);
+		Exit exit2 = new Exit("Test2", parkingLot);
+		ArrayList<Entry> entries = new ArrayList<Entry>();
+		ArrayList<Exit> exits = new ArrayList<Exit>();
+		entries.add(entry1);
+		entries.add(entry2);
+		parkingLot.setEntries(entries);
+		exits.add(exit1);
+		exits.add(exit2);
+		parkingLot.setExits(exits);
+		
+		entry1.checkLotCapacity();
+		entry2.checkLotCapacity();
+		
+		exit1.notifyLotOfExitingCar();
+		exit2.notifyLotOfExitingCar();
+		
+		assertFalse(entry1.isLocked());
+		assertFalse(entry2.isLocked());
+
+	}
+	
+	
 	/**
 	 * Tests if the entries are unlocked initially
 	 * Expected Output: entry.isLocked() == false
@@ -56,7 +111,7 @@ public class ParkingSystemTest {
 		entries.add(entry);
 		parkingLot.setEntries(entries);
 			
-		parkingLot.checkForAvailableSpace();
+		entry.checkLotCapacity();
 		assertFalse(entry.isLocked());
 		
 	}
