@@ -176,7 +176,7 @@ public class ParkingSystemTest {
 	 */
 	
 	public static void main(String [] args) throws ExecutionException, InterruptedException{
-		String scenario1 = "(1) : 1 parking space, 1 entry, 1 exit, 2s delay between entries, exits after 3s w/ 2s delays";
+		String scenario1 = "(1) : 1 parking space and entry and exits happen at an equal rate";
 		String scenario2 = "(2) : 10 parking spaces, 5 entries, 3 entries, 2s delay b/w entries, exits after 20s w/ 5s delays";
 		String scenario3 = "(3) : 50 parking spaces, 20 entries, 10 entries, entries after 5s w/ 10s delays, exits after 50s w/ 2s delays";
 		String scenario4 = "(4) : Entries locked for a long time";
